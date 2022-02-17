@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
  * criar métodos de callback diretamente dentro da entidade.
  * 
  * Criamos um evento para alterar a data de última atualização do animal
- * automaticamente, antes da persitencia e atualização, para que não haja
+ * automaticamente, antes da persistencia e atualização, para que não haja
  * necessidade de informar isso no código toda vez.
  * 
  */
