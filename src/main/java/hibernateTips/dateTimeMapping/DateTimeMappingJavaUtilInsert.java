@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 
 import javax.persistence.EntityManager;
 
-import ebook.JpaUtil;
+import algaworksEbook.JpaUtil;
 
 public class DateTimeMappingJavaUtilInsert {
 	

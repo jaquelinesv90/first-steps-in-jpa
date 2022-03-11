@@ -3,7 +3,7 @@ package hibernateTips.statistics;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import ebook.JpaUtil;
+import algaworksEbook.JpaUtil;
 
 public class Main {
 	

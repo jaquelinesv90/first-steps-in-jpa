@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import ebook.JpaUtil;
+import algaworksEbook.JpaUtil;
 import hibernateTips.enumMapping.attributeConverter.business.TripBean;
 import hibernateTips.enumMapping.attributeConverter.enums.Vehicle;
 
