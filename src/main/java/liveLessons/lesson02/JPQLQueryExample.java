@@ -80,7 +80,9 @@ public class JPQLQueryExample {
 		String jpqlNames = "select u.name from User u";
 		TypedQuery<String> typedQueryName = entityManager.createQuery(jpqlNames, String.class);
 		List<String> listNames = typedQueryName.getResultList();
-		//list.forEach(u -> System.out.println(u.getId() + ","+u.getName()));
+		
+		//listNames.forEach(u -> System.out.println(u.getId() + ","+u.getName()));
+		
 		for(String u : listNames) {
 			System.out.println(u);
 		}
