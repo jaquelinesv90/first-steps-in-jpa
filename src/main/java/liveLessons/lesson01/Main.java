@@ -32,7 +32,7 @@ public class Main {
 		/**
 		  Operações que vão alterar o banco(insert,update) precisam estar dentro de uma transação
 		  só é possível remover objetos que o entityManager está ciente de que existe no banco por isso a 
-		  busca antecipada,quando se utiliza o método find o entityManager coloca o objeto como gerenciado
+		  busca antecipada,quando se utiliza o método find o entityManager coloca o objeto como gerenciado.
 		    
 		  Tudo que altera banco de dados a gente precisa abrir e fechar transação para garantir a consistencia.
 		  pesquisa com método find, com jpql ou com criteria não precisa de transação.
