@@ -19,8 +19,8 @@ public class JPQLQueryExample {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
 		firstSelect(entityManager);
-		// choosingReturn(entityManager);
-		// makingProjections(entityManager);
+		choosingReturn(entityManager);
+		makingProjections(entityManager);
 		passParameter(entityManager);
 
 		entityManager.close();
@@ -60,6 +60,33 @@ public class JPQLQueryExample {
 
 		listNames.forEach(nome -> System.out.println(nome));
 	}
+	
+	/*  Fazer projeções é basicamente retornar somente os campos que eu quero de determinado objeto
+	 *  selecionando apenas alguns dados da tabela - o retorno com os campos está em um DTO
+	 *   retorna uma lista de array de objetos
+	 */
+	public static void makingProjections(EntityManager entityManager) {
+		String jpqlArray = "select id,name from User";
+		
+		TypedQuery<Object[]> typedQueryArray = entityManager.createQuery(jpqlArray, Object[].class);
+		List<Object[]> listArray = typedQueryArray.getResultList();
+		listArray.forEach(arr -> System.out.println(String.format("%s,%s,%s",arr)));
+
+		/*
+		 *  Eu não quero que ele me devolva um Array de objetos,eu quero 
+		 *   como retorno uma lista do tipo UsuarioDTO.
+		 *   com o 'new' com o pacote e o nome da classe é usado, dentro do parenteses os
+		 *   parametros que eu quero.
+		 */ 
+		String jpqlDto = "select new lesson02.dto.UserDto(id,name) from User";
+		TypedQuery<UserDto> typedQueryDto = entityManager.createQuery(jpqlDto, UserDto.class);
+		List<UserDto> listDto = typedQueryDto.getResultList();
+
+		for (UserDto u : listDto) {
+			System.out.println(u.getId() + "," + u.getName());
+		}
+	}
+
 
 	// passagem de parametros
 	public static void passParameter(EntityManager entityManager) {
@@ -75,25 +102,4 @@ public class JPQLQueryExample {
 		User userResult = typedQueryString.getSingleResult();
 		System.out.println("resultado :" + userResult.getId() + "," + userResult.getName());
 	}
-
-	// selecionando apenas alguns dados da tabela
-	// retorna uma lista de array de objetos
-	public static void makingProjections(EntityManager entityManager) {
-		String jpqlArray = "select id,name from User";
-		TypedQuery<Object[]> typedQueryArray = entityManager.createQuery(jpqlArray, Object[].class);
-		List<Object[]> listArray = typedQueryArray.getResultList();
-		for (Object u : listArray) {
-			System.out.println("%s,%s,%s" + u.getClass());
-		}
-
-		String jpqlDto = "select new lesson02.dto.UserDto(id,name) from User";
-		TypedQuery<UserDto> typedQueryDto = entityManager.createQuery(jpqlDto, UserDto.class);
-		List<UserDto> listDto = typedQueryDto.getResultList();
-
-		for (UserDto u : listDto) {
-			System.out.println(u.getId() + "," + u.getName());
-		}
-
-	}
-
 }
