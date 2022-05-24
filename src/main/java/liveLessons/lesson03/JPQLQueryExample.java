@@ -21,21 +21,20 @@ public class JPQLQueryExample {
 				.createEntityManagerFactory("Usuarios-PU");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
-		//firstSelect(entityManager);
-		//choosingReturn(entityManager);
-		//makingProjections(entityManager);
-		//passParameter(entityManager);
-		//innerJoin(entityManager);
-		//leftJoin(entityManager);
-		//joinFetch(entityManager);
+		firstSelect(entityManager);
+		choosingReturn(entityManager);
+		makingProjections(entityManager);
+		passParameter(entityManager);
+		innerJoin(entityManager);
+		leftJoin(entityManager);
+		joinFetch(entityManager);
 		filteringData(entityManager);
-		
 		
 		entityManager.close();
 		entityManagerFactory.close();
 	}
 	
-	
+	// exemplo de filtragem de dados usando JOIN
 	public static void filteringData(EntityManager entityManager) {
 		// filtros disponiveis : LIKE, IS NULL, IS EMPTY, BETWEEN, >,<, >=, <=, =, <>
 		// LIKE = select u from User u where u.nome like concat(:nomeUser, '%')
@@ -48,7 +47,7 @@ public class JPQLQueryExample {
 				.setParameter("today",LocalDateTime.now());
 		List<User> list = typedQuery.getResultList();
 		
-		//list.forEach(u -> System.out.println(u.getId() + ","+ u.getName()));
+		list.forEach(u -> System.out.println(u.getId() + ","+ u.getName()));
 	}
 	
 	
@@ -171,6 +170,5 @@ public class JPQLQueryExample {
 		Query query = entityManager.createQuery(jpqlCast);
 		User user2 = (User)query.getSingleResult();
 		System.out.println(user2.getId()+ "," + user2.getName());
-	}
-	
+	}	
 }

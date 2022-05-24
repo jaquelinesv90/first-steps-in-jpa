@@ -82,24 +82,24 @@ public class JPQLQueryExample {
 		TypedQuery<UserDto> typedQueryDto = entityManager.createQuery(jpqlDto, UserDto.class);
 		List<UserDto> listDto = typedQueryDto.getResultList();
 
-		for (UserDto u : listDto) {
-			System.out.println(u.getId() + "," + u.getName());
-		}
+		listDto.forEach(u -> System.out.println(u.getId() + "," + u.getName()));
 	}
-
 
 	// passagem de parametros
 	public static void passParameter(EntityManager entityManager) {
 		String jpql = "select u from User u where u.id = :idUser";
+		
 		TypedQuery<User> typedQuery = entityManager.createQuery(jpql, User.class);
 		typedQuery.setParameter("idUser", 1);
 		User user = typedQuery.getSingleResult();
 		System.out.println(user.getId() + "," + user.getName());
 
 		String jpqlString = "select u from User u where u.name = :nameUser";
+		
 		TypedQuery<User> typedQueryString = entityManager.createQuery(jpqlString, User.class);
 		typedQueryString.setParameter("nameUser", "celo");
 		User userResult = typedQueryString.getSingleResult();
+		
 		System.out.println("resultado :" + userResult.getId() + "," + userResult.getName());
 	}
 }
