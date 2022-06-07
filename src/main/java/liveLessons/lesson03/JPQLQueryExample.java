@@ -8,6 +8,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import liveLessons.lesson03.model.Configuration;
+import liveLessons.lesson03.model.Control;
 import liveLessons.lesson03.model.User;
 
 
@@ -58,25 +60,21 @@ public class JPQLQueryExample {
 		String jpql = "select u, c from user u left join u.configuration c ";
 		TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
 		List<Object[]> list = typedQuery.getResultList();
-		
-		
+
 		// arr[0] == Usuario - no indice 0 ele guarda o usuario
 		// arr[1] == Configuracao - no indice 1 ele guarda a configuracao
+		// escrever a palavra outer na instrução é opcional
 		
-		/** implementação do for em java 8+
-		 * 
-		 * list.forEach(arr -> {
-		 *  	String out = ((Usuario) arr[0]).getNome(); 
-		 * 	if( arr[1] == null){
-		 * 		out+= ", NULL";
-		 * } else {
-		 *  	out += "," + (Configuracao) arr[1]).getId();
-		 *  }
-		 *  
-		 *  System.out.println(out);
-		 *  
-		 * });
-		 */
+			list.forEach(arr -> {
+				String out = ((User) arr[0]).getName();
+				if (arr[1] == null) {
+					out += ",NULL";
+				} else {
+					out += ((Configuration) arr[1]).getId();
+				}
+			}
+
+		);
 	}
 	
 	public static void innerJoin(EntityManager entityManager) {
