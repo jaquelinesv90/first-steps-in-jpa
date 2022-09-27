@@ -1,13 +1,5 @@
-This repository was divided in 4 packages.
+<b>First steps in JPA</b>
 
-First package based in reading the book available:
-https://cafe.algaworks.com/livro-jpa-guia-definitivo/
-
-Second package:
-
-Third package based in reading the book available:
-https://bityli.com/Zeosy
-
-Fourth package live lessons:
-https://youtu.be/MGWJbaYdy-Y
+This repository is only backend.
+Here you can find many examples of use JPA + HIBERNATE.
 
